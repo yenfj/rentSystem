@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <meta charset="UTF-8">
+	    <title>Contract</title>
+	    <link th:href="@{/css/ContractStyle.css(version=${T(java.lang.System).currentTimeMillis()})}" rel="stylesheet">
+	    <script th:src="@{/js/ContractFunction.js}"></script>
+	</head>
+	<body>
+	
+		
+	    <form th:action="@{/search}" method="get" th:object="${searchRequest}">
+	        <div class="flex">
+	            <input type="text" th:field="*{contractId}" placeholder="契約IDを入力してください">
+	            <input type="text" th:field="*{buildingName}" placeholder="建物名称を入力してください">
+	            <div class="date">
+	                <input type="date" th:field="*{startDate}">
+	                <p>～</p>
+	                <input type="date" th:field="*{endDate}" th:attr="min=*{startDate}">
+	            </div>
+	        </div>
+	        <div class="flex down">
+	            <input type="text" th:field="*{owner}" placeholder="貸主名を入力してください">
+	            <input type="text" th:field="*{tenant}" placeholder="借主名を入力してください">
+	            <select th:field="*{contractState}">
+                    <option value="0" th:selected="${contractState == 0}">契約状態</option>
+                    <option value="1" th:selected="${contractState == 1}">契約中</option>
+                    <option value="2" th:selected="${contractState == 2}">契約完了</option>
+                    <option value="3" th:selected="${contractState == 3}">契約進行中</option>
+                    <option value="4" th:selected="${contractState == 4}">契約終了</option>
+                    <option value="5" th:selected="${contractState == 5}">解約中</option>
+                </select>
+	            <div class="searchBtn">
+	                <button type="reset" id="searchReset">リセット</button>
+	                <button type="submit" id="search">検索</button>
+	            </div>
+	        </div>
+	    </form>
+	    
+	    <div class="tool">
+            <a th:href="@{/contract/add_contract}">
+		        <button class="addContract">新規契約</button>
+		    </a>
+            <button>解約</button>
+            <button>削除</button>
+        </div>
+        
+        <table class="result">
+		    <thead>
+		        <tr>
+		            <th>
+		                <input type="checkbox">
+		            </th>
+		            <th>契約番号</th>
+		            <th>建物名称</th>
+		            <th>住戸番号</th>
+		            <th>貸主</th>
+		            <th>借主</th>
+		            <th>契約始期</th>
+		            <th>契約終期</th>
+		            <th>契約状態</th>
+		            <th>詳細</th>
+		            <th>契約継続</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <tr th:each="contract : ${contracts}">
+		            <td>
+		                <input type="checkbox" name="selectedContracts" th:value="${contract.id}" />
+		            </td>
+		            <td th:text="${contract.contractId}"></td>
+		            <td th:text="${contract.buildingName}"></td>
+		            <td th:text="${contract.roomId}"></td>
+		            <td th:text="${contract.owner}"></td>
+		            <td th:text="${contract.tenant}"></td>
+		            <td th:text="${contract.startDate}"></td>
+		            <td th:text="${contract.endDate}"></td>
+		            <td th:text="${contract.state}"></td>
+		            <td>
+		                <div class="detailsBtn">
+		                    <button id="showCon">照会</button>
+		                    <button id="editCon">編集</button>
+		                </div>
+		            </td>
+		            <td>
+		                <div class="detailsBtn">
+		                    <button id="renewCon">継続</button>
+		                    <button id="stopCon">続かない</button>
+		                </div>
+		            </td>
+		        </tr>
+		    </tbody>
+		</table>
+		        
+        
+	</body>
+</html>

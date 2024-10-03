@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper  namespace="com.example.rentSystem.repository.ContractDAO">
+
+	<!-- 作成日：顔　日付　2024/9/30 -->
+	<!-- 新規契約を追加する -->
+	<insert id="insertContract" parameterType="com.example.rentSystem.entity.Contract" useGeneratedKeys="true" keyProperty="contractId">
+		INSERT INTO 
+			rent_system.contract (
+				room_id,
+				owner,
+				tenant,
+				start_date,
+				end_date,
+				deliver_date,
+				rent,
+				rent_payment_term,
+				rent_deadline,
+				management_fee,
+				management_fee_payment_term,
+				management_fee_deadline,
+				deposit,
+				parking_fee,
+				facilities_fee,
+				gift_money,
+				payment_method,
+				handing_fee,
+				account_name,
+				bank_name,
+				account_type,
+				account,
+				document_address,
+				remarks
+			) 
+		VALUES 
+			(
+				#{roomId},
+				#{owner},
+				#{tenant},
+				#{startDate},
+				#{endDate},
+				#{deliverDate},
+				#{rent},
+				#{rentPaymentTerm},
+				#{rentDeadline},
+				#{managementFee},
+				#{managementFeePaymentTerm},
+				#{managementFeeDeadline},
+				#{deposit},
+				#{parkingFee},
+				#{facilitiesFee},
+				#{giftMoney},
+				#{paymentMethod},
+				#{handingFee},
+				#{accountName},
+				#{bankName},
+				#{accountType},
+				#{account},
+				#{documentAddress},
+				#{remarks}
+			)
+	</insert>
+	
+	
+	<!-- 作成日：顔　日付　2024/9/30 -->
+	<!-- 契約情報を更新する -->
+	<update id="updateContract" parameterType="com.example.rentSystem.entity.Contract">
+	    UPDATE 
+	    	rent_system.contract 
+	    <set>
+	        <if test="owner != null and owner != ''">
+	        	owner = #{owner},
+	        </if>
+	        
+	        <if test="startDate != null and startDate != ''">
+	        	start_date = #{startDate},
+	        </if>
+	        
+	        <if test="endDate != null and endDate != ''">
+	        	end_date = #{endDate},
+	        </if>
+	        
+	        <if test="deliverDate != null and deliverDate != ''">
+	        	deliver_date = #{deliverDate},
+	        </if>
+	        
+	        <if test="rent != null and rent != 0">
+	        	rent = #{rent},
+	        </if>
+	        
+	        <if test="rentPaymentTerm != null and rentPaymentTerm != ''">
+	        	rent_payment_term = #{rentPaymentTerm},
+	        </if>
+	        
+	        <if test="rentDeadline != null and rentDeadline != 0">
+	        	rent_deadline = #{rentDeadline},
+	        </if>
+	        
+	        <if test="managementFee != null and managementFee != 0">
+	        	management_fee = #{managementFee},
+	        </if>
+	        
+	        <if test="managementFeePaymentTerm != null and managementFeePaymentTerm != ''">
+	        	management_fee_payment_term = #{managementFeePaymentTerm},
+	        </if>
+	        
+	        <if test="managementFeeDeadline != null and managementFeeDeadline != 0">
+	        	management_fee_deadline = #{managementFeeDeadline},
+	        </if>
+	        
+	        <if test="deposit != null and deposit != 0">
+	        	deposit = #{deposit},
+	        </if>
+	        
+	        <if test="parkingFee != null and parkingFee != 0">
+	        	parking_fee = #{parkingFee},
+	        </if>
+	        
+	        <if test="facilitiesFee != null and facilitiesFee != 0">
+	        	facilities_fee = #{facilitiesFee},
+	        </if>
+	        
+	        <if test="giftMoney != null and giftMoney != 0">
+	        	gift_money = #{giftMoney},
+	        </if>
+	        
+	        <if test="paymentMethod != null and paymentMethod != ''">
+	        	payment_method = #{paymentMethod},
+	        </if>
+	        
+	        <if test="handingFee != null and handingFee != ''">
+	        	handing_fee = #{handingFee},
+	        </if>
+	        
+	        <if test="accountName != null and accountName != ''">
+	        	account_name = #{accountName},
+	        </if>
+	        
+	        <if test="bankName != null and bankName != ''">
+	        	bank_name = #{bankName},
+	        </if>
+	        
+	        <if test="accountType != null and accountType != ''">
+	        	account_type = #{accountType},
+	        </if>
+	        
+	        <if test="account != null and account != ''">
+	        	account = #{account},
+	        </if>
+	        
+	        <if test="documentAddress != null and documentAddress != ''">
+	        	document_address = #{documentAddress},
+	        </if>
+	        
+	        <if test="remarks != null and remarks != ''">
+	        	remarks = #{remarks} 
+	        </if>
+	    </set>
+	    WHERE 
+	    	contract_id = #{contractId}
+	</update>
+
+	<!-- 作成日：顔　日付　2024/9/30 -->
+	<!-- 契約情報を削除する -->
+	<delete id="deleteContract" parameterType="com.example.rentSystem.entity.Contract">
+	    DELETE FROM 
+	    	rent_system.contract 
+	    WHERE 
+	    	contract_id = #{contractId}
+	</delete>
+
+
+	<!-- 作成日：顔　日付　2024/9/23 -->
+	<!-- 契約検索メソッド -->
+	<!-- 契約一覧の検索条件を満たしたデータを戻すクラス -->
+    <resultMap id="selectContractResResultMap" type="com.example.rentSystem.vo.SearchContractRes">
+        <result property="contractId" column="contractId"/>
+        <result property="buildingName" column="buildingName"/>
+        <result property="roomId" column="roomId"/>
+        <result property="owner" column="owner"/>
+        <result property="tenant" column="tenant"/>
+        <result property="startDate" column="startDate"/>
+        <result property="endDate" column="endDate"/>
+    </resultMap>
+
+
+	<!-- 作成日：顔　日付　2024/9/23 -->
+	<!-- 契約一覧の検索条件でデータを探す -->
+    <select id="selectContract" parameterType="com.example.rentSystem.vo.SearchContractReq" resultMap="selectContractResResultMap">
+        SELECT 
+            c.contract_id AS contractId,
+            b.building_name AS buildingName,
+            c.room_id AS roomId,
+            c.owner AS owner,
+            c.tenant AS tenant,
+            c.start_date AS startDate,
+            c.end_date AS endDate
+        FROM 
+            rent_system.contract c
+        JOIN 
+            rent_system.room r ON c.room_id = r.room_id 
+        JOIN 
+            rent_system.building b ON r.building_id = b.building_id 
+        WHERE 
+            1=1
+            <if test="contractId != 0">
+                AND c.contract_id = #{contractId} 
+            </if>
+            <if test="buildingName != null and buildingName != ''">
+                AND b.building_name LIKE CONCAT('%', #{buildingName}, '%') 
+            </if>
+            <if test="startDate != null">
+                AND c.start_date >= #{startDate} 
+            </if>
+		    <if test="endDate != null">
+		        AND c.end_date &lt;== #{endDate} 
+		    </if>
+		    <if test="owner != null and owner != ''">
+                AND c.owner = #{owner} 
+            </if>
+            <if test="tenant != null and tenant != ''">
+                AND c.tenant = #{tenant} 
+            </if>
+            <if test="state > 0">
+                AND (
+	                	CASE 
+	                    WHEN c.start_date > CURRENT_DATE THEN 1
+	                    WHEN c.end_date &lt; CURRENT_DATE THEN 4
+	                    WHEN c.end_date >= CURRENT_DATE AND c.end_date &lt; DATE_ADD(CURRENT_DATE, INTERVAL 1 MONTH) THEN 5
+	                    ELSE 3 END
+                    ) = #{state}
+            </if>
+    </select>
+	    
+	
+
+	<!-- 作成日：顔　日付　2024/9/23 -->
+	<!-- 契約IDで契約情報を探したデータを戻す -->
+	<resultMap id="ContractResultMap" type="com.example.rentSystem.entity.Contract">
+        <id property="contractId" column="contracts_id"/>
+        <result property="roomId" column="room_id"/>
+        <result property="owner" column="owner"/>
+        <result property="tenant" column="tenant"/>
+        <result property="startDate" column="start_date"/>
+        <result property="endDate" column="end_date"/>
+        <result property="deliverDate" column="deliver_date"/>
+        <result property="rent" column="rent"/>
+        <result property="rentPaymentTerm" column="rent_payment_term"/>
+        <result property="rentDeadline" column="rent_deadline"/>
+        <result property="managementFee" column="management_fee"/>
+        <result property="managementFeePaymentTerm" column="managementFeePaymentTerm"/>
+        <result property="managementFeeDeadline" column="management_fee_deadline"/>
+        <result property="deposit" column="deposit"/>
+        <result property="parkingFee" column="parking_fee"/>
+        <result property="facilitiesFee" column="facilities_fee"/>
+        <result property="giftMoney" column="gift_money"/>
+        <result property="paymentMethod" column="payment_method"/>
+        <result property="handingFee" column="handing_fee"/>
+        <result property="accountName" column="account_name"/>
+        <result property="bankName" column="bank_name"/>
+        <result property="accountType" column="account_type"/>
+        <result property="account" column="account"/>
+        <result property="documentAddress" column="document_address"/>
+        <result property="remarks" column="remarks"/>
+    </resultMap>
+    
+
+	<!-- 作成日：顔　日付　2024/9/23 -->
+	<!-- 契約IDで契約情報を探す -->
+	<select id="selectContractById" resultMap="ContractResultMap">
+		SELECT * FROM 
+        	rent_system.contract
+        WHERE 
+        	contract_id = #{contractId}
+	</select>
+</mapper>

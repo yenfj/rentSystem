@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Add And Update Contract</title>
+		<link th:href="@{/css/AddAndUpdateContractStyle.css(version=${T(java.lang.System).currentTimeMillis()})}" rel="stylesheet">
+		<script th:src="@{/js/AddAndUpdateContractFunction.js}"></script>
+	</head>
+	<body>
+		<div class="set">
+		    <p id="page1" class="" th:onclick="'handlePageChange(1)'" th:text="建物情報確認" />
+		    <p id="page2" class="" th:onclick="'handlePageChange(2)'" th:text="契約内容登録" />
+		    <p id="page3" class="" th:onclick="'handlePageChange(3)'" th:text="契約情報を確認" />
+		</div>
+		
+		<div class="top">
+			<a th:href="@{/contract}">
+				<button class="cancel">キャンセル</button>
+			</a>
+            <p class="title" id="pageTitle" />
+        </div>
+		
+		<!-- ステップ1：建物や部屋についての情報 -->
+		<div id="step1" class="info" style="display:none;">
+			<label>
+			    <p class="column" th:text="建物名称：" />
+			    <input type="text" id="buildingName" th:value="${buildingName}" placeholder="必須フィールド">
+			</label>
+			<label>
+			    <p class="column" th:text="部屋番号：" />
+			    <input type="text" id="room" th:value="${room}" placeholder="必須フィールド">
+			</label>
+			<label>
+			    <p class="column" th:text="所在地：" />
+			    <p class="value" th:text="${address}" />
+			</label>
+			<label>
+			    <p class="column" th:text="建物種類：" />
+			    <p class="value" th:text="${buildingType}" />
+			</label>
+			<label>
+			    <p class="column" th:text="建物構造：" />
+			    <p class="value" th:text="${structure}" />
+			</label>
+			<label>
+			    <p class="column" th:text="建築時期：" />
+			    <p class="value" th:text="${buildingPeriod}" />
+			</label>
+			<label>
+			    <p class="column" th:text="大規模修繕：" />
+			    <p class="value" th:text="${repair}" />
+			</label>
+			<label>
+			    <p class="column" th:text="間取り：" />
+			    <p class="value" th:text="${floorPlan}" />
+			</label>
+			<label>
+			    <p class="column" th:text="床面積：" />
+			    <p class="value" th:text="${floorArea}" />
+			</label>
+			<label>
+			    <p class="column" th:text="バルコニー面積：" />
+			    <p class="value" th:text="${balconyArea}" />
+			</label>
+		</div>
+		
+		<!-- ステップ2：契約期間や料金についての情報 -->
+		<div id="step2" class="info" style="display:none;">
+		<label>
+		    <p class="column" th:text="貸主名：" />
+		    <input type="text" id="lender" th:value="${lender}" placeholder="必須フィールド">
+		</label>
+		<label>
+		    <p class="column" th:text="借主名：" />
+		    <input type="text" id="borrower" th:value="${borrower}" placeholder="必須フィールド">
+		</label>
+		<label>
+		    <p class="column" th:text="契約期間：" />
+		    <input type="date" id="startDate" th:value="${startDate}">
+		    <p style="font-size: 1.7rem; padding-bottom: 0.7%;">～</p>
+		    <input type="date" id="endDate" th:value="${endDate}" th:attr="min=${startDate}">
+		    <p id="contractPeriod" th:text="${contractPeriod}"></p>
+		</label>
+		<label>
+		    <p class="column" th:text="引渡日：" />
+		    <input type="date" id="deliveryDate" th:value="${deliveryDate}">
+		</label>
+		
+		<div class="rent">
+		    <label id="rentfee">
+		        <p class="column" th:text="賃料：" />
+		        <input type="number" id="rent" th:value="${rent}" placeholder="必須フィールド">
+		    </label>
+		    <select id="rentPay" th:value="${rentPay}">
+		        <option value="" th:text="支払時期"></option>
+		        <option value="当月分を" th:selected="${rentPay == '当月分を'}" th:text="当月分を"></option>
+		        <option value="翌月分を" th:selected="${rentPay == '翌月分を'}" th:text="翌月分を"></option>
+		    </select>
+		    <select id="rentPayDay" th:value="${rentPayDay}">
+		        <option value="" th:text="'毎月   日までに支払う'"></option>
+		        <option th:each="day : ${#numbers.sequence(1, 28)}" th:value="${day}" th:text="'毎月 ' + ${day} + ' 日までに支払う'"></option>
+		        <option value="29" th:selected="${managementFeePayDay == 29}" th:text="'毎月 末日 までに支払う'"></option>
+		    </select>
+		</div>
+		
+		<div class="rent">
+		    <label id="managementFee">
+		        <p class="column" th:text="管理費：" />
+		        <input type="number" id="managementFee" th:value="${managementFee}" placeholder="必須フィールド">
+		    </label>
+		    <select id="managementFeePay" th:value="${managementFeePay}">
+		        <option value="" th:text="支払時期"></option>
+		        <option value="当月分を" th:selected="${rentPay == '当月分を'}" th:text="当月分を"></option>
+		        <option value="翌月分を" th:selected="${rentPay == '翌月分を'}" th:text="翌月分を"></option>
+		    </select>
+		    <select id="managementFeePayDay" th:value="${managementFeePayDay}">
+		        <option value="" th:text="'毎月   日までに支払う'"></option>
+		        <option th:each="day : ${#numbers.sequence(1, 28)}" th:value="${day}" th:text="'毎月 ' + ${day} + ' 日までに支払う'"></option>
+		        <option value="29" th:selected="${managementFeePayDay == 29}" th:text="'毎月 末日 までに支払う'"></option>
+		    </select>
+		    <label id="sameTimePay">
+		        <input type="checkBox" id="sameTimePayment" th:checked="${sameTimePayment}">
+		        <p th:text="賃料同時に支払う" />
+		    </label>
+		</div>
+		
+		<label>
+		    <p class="column" th:text="保証金：" />
+		    <input type="number" id="deposit" th:value="${deposit}">
+		</label>
+		<label>
+		    <p class="column" th:text="駐車場使用料：" />
+		    <input type="number" id="parkingFee" th:value="${parkingFee}">
+		</label>
+		<label>
+		    <p class="column" th:text="付属施設使用料：" />
+		    <input type="number" id="facilitiesFee" th:value="${facilitiesFee}">
+		</label>
+		<label>
+		    <p class="column" th:text="礼金：" />
+		    <input type="number" id="giftMoney" th:value="${giftMoney}">
+		</label>
+		
+		<div class="payment">
+		    <p class="column" th:text="支払方法：" />
+		    <select id="paymentMethod" th:value="${paymentMethod}" onchange="togglePaymentDetails()">
+		        <option value="" th:text="支払方法"></option>
+		        <option value="振り込み" th:selected="${paymentMethod == '振り込み'}" th:text="振り込み"></option>
+		        <option value="持参" th:selected="${paymentMethod == '持参'}" th:text="持参"></option>
+		    </select>
+		    <select id="transferFeePayer" th:value="${handlingFee}" style="display:none;">
+		        <option value="" th:text="振込手数料負担者"></option>
+		        <option value="貸主" th:selected="${handlingFee == '貸主'}" th:text="貸主"></option>
+		        <option value="借主" th:selected="${handlingFee == '借主'}" th:text="借主"></option>
+		    </select>
+		</div>
+		
+		<div id="paymentDetails" style="display:none;">
+		    <p class="detailsTitle" th:text="借主銀行口座情報" />
+		    <select id="borrowerBankType" th:value="${borrowerAccountType}">
+		        <option value="" th:text="口座種別"></option>
+		        <option value="普通預金口座" th:selected="${borrowerAccountType == '普通預金口座'}" th:text="普通預金口座"></option>
+		        <option value="定期預金口座" th:selected="${borrowerAccountType == '定期預金口座'}" th:text="定期預金口座"></option>
+		        <option value="総合口座" th:selected="${borrowerAccountType == '総合口座'}" th:text="総合口座"></option>
+		        <option value="その他" th:selected="${borrowerAccountType == 'その他'}" th:text="その他"></option>
+		    </select>
+		    <label>
+		        <p class="column" th:text="振込先金融機関名・支店名：" />
+		        <input type="text" id="borrowerBankName" th:value="${borrowerBankName}">
+		    </label>
+		    <label>
+		        <p class="column" th:text="口座名義人・フリガナ：" />
+		        <p class="value" th:text="${borrower}" />
+		    </label>
+		    <label>
+		        <p class="column" th:text="口座番号：" />
+		        <input type="number" id="borrowerBankNumber" th:value="${borrowerBankNumber}">
+		    </label>
+		</div>
+		
+		<label id="handingFeeDetails" style="display:none;">
+		    <p class="column" th:text="持ち参り先：" />
+		    <input type="text" id="documentAddress" th:value="${documentAddress}">
+		</label>
+		</div>
+		
+		<!-- ステップ3：契約内容を確認 -->
+		<div id="step3" class="info" style="display:none;">
+			<label>
+			    <p class="column" th:text="建物名称：" />
+			    <p class="value" th:text="${buildingName}" />
+			</label>
+			<label>
+			    <p class="column" th:text="部屋番号：" />
+			    <p class="value" th:text="${room}" />
+			</label>
+			<label>
+			    <p class="column" th:text="貸主名：" />
+			    <p class="value" th:text="${lender}" />
+			</label>
+			<label>
+			    <p class="column" th:text="借主名：" />
+			    <p class="value" th:text="${borrower}" />
+			</label>
+			<label>
+			    <p class="column" th:text="契約期間：" />
+			    <p class="value" th:text="${startDate} + ' ～ ' + ${endDate}" />
+			</label>
+			<label>
+			    <p class="column" th:text="引渡日：" />
+			    <p class="value" th:text="${deliveryDate}" />
+			</label>
+			<label>
+			    <p class="column" th:text="賃料：" />
+			    <p class="value" th:text="${rent} + ' ' + ${rentPay} + ${rentPayDay}" />
+			</label>
+			<label>
+			    <p class="column" th:text="管理費：" />
+			    <p class="value" th:text="${managementFee} + ' ' + ${managementFeePay} + ${managementFeePayDay}" />
+			</label>
+			
+			<label>
+			    <p class="column" th:text="保証金：" />
+			    <p class="value" th:text="${deposit}" />
+			</label>
+			<label>
+			    <p class="column" th:text="駐車場使用料：" />
+			    <p class="value" th:text="${parkingFee}" />
+			</label>
+			<label>
+			    <p class="column" th:text="付属施設使用料：" />
+			    <p class="value" th:text="${facilitiesFee}" />
+			</label>
+			<label>
+			    <p class="column" th:text="礼金：" />
+			    <p class="value" th:text="${giftMoney}" />
+			</label>
+			<label>
+			    <p class="column" th:text="支払方法：" />
+			    <p class="value" th:text="${paymentMethod}" />
+			</label>
+			<div id="payment" style="display:none;">
+				<label>
+				    <p class="column" th:text="振込手数料負担者：" />
+				    <p class="value" th:text="${handlingFee}" />
+				</label>
+				<label>
+				    <p class="column" th:text="借主口座種別：" />
+				    <p class="value" th:text="${borrowerAccountType}" />
+				</label>
+				<label>
+				    <p class="column" th:text="借主振込先金融機関名・支店名：" />
+				    <p class="value" th:text="${borrowerBankName}" />
+				</label>
+				<label>
+				    <p class="column" th:text="借主口座番号：" />
+				    <p class="value" th:text="${borrowerBankNumber}" />
+				</label>
+			</div>
+			<label id="handing" style="display:none;">
+			    <p class="column" th:text="持ち参り先：" />
+			    <p class="value" th:text="${documentAddress}" />
+			</label>
+			<label id="remarks">
+				<p class="column" th:text="備考欄：" />
+                <textarea th:text="${remarks}"></textarea>
+            </label>
+		</div>
+	</body>
+</html>

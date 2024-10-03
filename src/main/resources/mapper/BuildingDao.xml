@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper  namespace="com.example.rentSystem.repository.BuildingDAO">
+
+	<!-- 作成日：顔　日付　2024/9/29 -->
+	<!-- 新規建物を追加する -->
+	<insert id="insertBuilding" parameterType="com.example.rentSystem.entity.Building" useGeneratedKeys="true" keyProperty="buildingId">
+		INSERT INTO 
+			rent_system.building (
+				building_name,
+				address,
+				type,
+				structure,
+				period_year,
+				period_month,
+				repair_year,
+				repair_month
+			) 
+		VALUES 
+			(
+				#{buildingName},
+				#{address},
+				#{type},
+				#{structure},
+				#{periodYear},
+				#{periodMonth},
+				#{repairYear},
+				#{repairMonth}
+			)
+	</insert>
+	
+</mapper>

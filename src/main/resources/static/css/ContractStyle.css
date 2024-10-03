@@ -1,0 +1,271 @@
+@import url("https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Zen Kaku Gothic New", sans-serif;
+  font-weight: 500;
+}
+
+p, input, select, button {
+  color: #1E1E1E;
+}
+
+button {
+  font-weight: bold;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  padding: 5% 5% 0% 5%;
+  overflow: auto;
+}
+
+.search {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.search .flex {
+  width: 100%;
+  height: 45%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search .flex input {
+  width: 30%;
+  height: 100%;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #1E1E1E;
+  background: #D9D9D9;
+  border: none;
+  border-radius: 1.5rem;
+  padding: 0.5%;
+}
+.search .flex .date {
+  width: 35%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search .flex .date input[type=date] {
+  width: 45%;
+  height: 100%;
+  text-align: center;
+  padding: 0.5% 3%;
+}
+.search .flex .date p {
+  font-size: 1.5rem;
+  padding-bottom: 1%;
+}
+.search .down input {
+  width: 25%;
+}
+.search .down select {
+  width: 10%;
+  height: 100%;
+  font-size: 1.1rem;
+  text-align: center;
+  color: #1E1E1E;
+  border: none;
+  border-radius: 1.5rem;
+  background: #D9D9D9;
+}
+.search .down .searchBtn {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.search .down .searchBtn button {
+  height: 95%;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #1E1E1E;
+  background: #D9D9D9;
+  border: none;
+  border-radius: 0.2rem;
+  margin-left: 5%;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+.search .down .searchBtn button:hover {
+  scale: 105%;
+}
+.search .down .searchBtn button:active {
+  scale: 98%;
+}
+.search .down .searchBtn #searchReset {
+  width: 22%;
+  font-size: 0.9rem;
+}
+.search .down .searchBtn #search {
+  width: 17%;
+}
+
+.tool {
+  width: 100%;
+  height: 6%;
+  margin-top: 1%;
+}
+.tool .addContract {
+  width: 7%;
+  height: 100%;
+}
+.tool button {
+  width: 5%;
+  height: 100%;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #1E1E1E;
+  background: #D9D9D9;
+  border: none;
+  border-radius: 0.2rem;
+  margin-right: 1%;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+.tool button:hover {
+  scale: 105%;
+}
+.tool button:active {
+  scale: 98%;
+}
+
+.result {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5%;
+}
+.result input {
+  scale: 165%;
+  margin-top: 10%;
+}
+.result .detailsBtn {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.result .detailsBtn button {
+  width: 47%;
+  height: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 0.2rem;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+.result .detailsBtn button:hover {
+  scale: 105%;
+}
+.result .detailsBtn button:active {
+  scale: 98%;
+}
+.result .detailsBtn #showCon, .result .detailsBtn #renewCon {
+  background: #664D3F;
+}
+.result .detailsBtn #editCon, .result .detailsBtn #stopCon {
+  background: #DBA188;
+}
+.result .detailsBtn #renewCon {
+  width: 37%;
+}
+.result .detailsBtn #stopCon {
+  width: 57%;
+}
+.result th, .result td {
+  height: 7dvh;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding: 0.5%;
+  overflow: hidden;
+}
+.result tbody tr {
+  background: #D9D9D9;
+  border-top: 0.5rem solid transparent;
+}
+.result th {
+  font-size: 1rem;
+  color: #1E1E1E;
+  background: #D1B9A1;
+}
+.result th:nth-child(1) {
+  width: 5%;
+}
+.result th:nth-child(2) {
+  width: 9%;
+}
+.result th:nth-child(3) {
+  width: 10%;
+}
+.result th:nth-child(4) {
+  width: 10%;
+}
+.result th:nth-child(5) {
+  width: 9%;
+}
+.result th:nth-child(6) {
+  width: 9%;
+}
+.result th:nth-child(7) {
+  width: 9%;
+}
+.result th:nth-child(8) {
+  width: 9%;
+}
+.result th:nth-child(9) {
+  width: 8%;
+}
+.result th:nth-child(10) {
+  width: 10%;
+}
+.result th:nth-child(11) {
+  width: 12%;
+}
+.result td:nth-child(1) {
+  width: 5%;
+}
+.result td:nth-child(2) {
+  width: 9%;
+}
+.result td:nth-child(3) {
+  width: 10%;
+}
+.result td:nth-child(4) {
+  width: 10%;
+}
+.result td:nth-child(5) {
+  width: 9%;
+}
+.result td:nth-child(6) {
+  width: 9%;
+}
+.result td:nth-child(7) {
+  width: 9%;
+}
+.result td:nth-child(8) {
+  width: 9%;
+}
+.result td:nth-child(9) {
+  width: 8%;
+}
+.result td:nth-child(10) {
+  width: 10%;
+}
+.result td:nth-child(11) {
+  width: 12%;
+}
+
+/*# sourceMappingURL=ContractStyle.css.map */

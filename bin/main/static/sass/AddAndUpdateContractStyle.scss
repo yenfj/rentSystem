@@ -1,0 +1,395 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap');
+
+//sass --watch src/main/resources/static/sass/AddAndUpdateContractStyle.scss:src/main/resources/static/css/AddAndUpdateContractStyle.css
+
+$mainClr: #8E8E8E;
+$txtClr: #1E1E1E;
+$bgClr: #D9D9D9;
+$bg2Clr: #D1B9A1;
+$bg3Clr: #DBA188;
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Zen Kaku Gothic New", sans-serif;
+	font-weight: 500;
+}
+
+.check {
+    background: $mainClr;
+}
+
+p, input, select, button{
+    color: $txtClr;
+}
+
+button{
+    font-weight: bold;
+}
+
+body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+	.set {
+	    width: 13%;
+	    height: 100%;
+	    background: $bgClr;
+	    padding-top: 5%;
+	    position: fixed;
+	    top: 0%;
+	    left: 0%;
+	
+	    p {
+	        width: 100%;
+	        font-size: 1.2rem;
+	        font-weight: bold;
+	        text-align: center;
+	        margin-bottom: 10%;
+	        padding: 5% 0%;
+	        cursor: pointer;
+	        transition: 0.1s ease;
+	        
+	        &:hover {
+	            color: white;
+	            background: $mainClr;
+	        }
+	    }
+	}
+	
+	.top{
+	    width: 87%;
+	    height: 8%;
+	    display: flex;
+	    justify-content: center;
+	    align-items: center;
+	    position: fixed;
+	    top: 2%;
+	    left: 13%;
+	    
+		a {
+			width: 10%;
+			height: 70%;
+			position: absolute;
+			left: 7.5%;
+	        .cancel{
+	            width: 100%;
+	            height: 100%;
+	            font-size: 1.15rem;
+	            font-weight: bold;
+	            color: white;
+	            background: $mainClr;
+	            border: none;
+	            border-radius: 0.2rem;
+	            padding-top: 0.3%;
+	
+	            cursor: pointer;
+	            transition: 0.15s ease;
+	            &:hover{
+	                scale: 102%;
+	            }
+	            &:active{
+	                scale: 98%;
+	            }
+	        }
+		}
+	    .title{
+	        font-size: 1.7rem;
+	        font-weight: bold;
+	    }
+	}
+	
+	.info{
+	    width: 77%;
+	    height: 80%;
+	    background: $bgClr;
+	    border-radius: 2rem;
+	    margin: 0% 5%;
+	    padding: 1% 2%;
+	    position: fixed;
+	    top: 14%;
+	    left: 13.5%;
+	    overflow: auto;
+	
+	    label{
+	        width: 100%;
+	        height: 10%;
+	        font-size: 1.15rem;
+	        display: flex;
+	        align-items: center;
+	        
+	        input{
+	            height: 80%;
+	            font-size: 1.15rem;
+	            border: 0.1rem solid $mainClr;
+	            border-radius: 0.5rem;
+	            padding: 0.5% 1%;
+	        }
+	    }
+	    //scrollbar
+	    &::-webkit-scrollbar{
+	        width: 0.5rem;
+	    }
+	    &::-webkit-scrollbar-button {
+	        border-radius: 0.2rem;
+	    }
+	    &::-webkit-scrollbar-track-piece {
+	        background: #F2F2F2;
+	    }
+	    &::-webkit-scrollbar-thumb {
+	        border-radius: 0.5rem;
+	        background-color: rgba(0, 0, 0, 0.4);
+	    }
+	}
+}
+
+// ステップ1
+#buildingName{
+    width: 70%;
+}
+
+#room{
+    width: 30%;
+}
+
+.column{
+    width: 15%;
+    font-weight: bold;
+    text-align: end;
+    margin-right: 2.5%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.value{
+    width: 85%;
+    font-size: 1.1rem;
+    padding-left: 1.5%;
+}
+
+.btn{
+    width: 100%;
+    height: 8%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+
+    .next{
+        width: 8%;
+        height: 100%;
+        font-size: 1.2rem;
+        font-weight: bolder;
+        color: white;
+        background: $bg2Clr;
+        border: none;
+        border-radius: 0.5rem;
+
+        cursor: pointer;
+        transition: 0.15s ease;
+        &:hover{
+            scale: 105%;
+        }
+    }
+
+    .back{
+        width: 8%;
+        height: 100%;
+        font-size: 1.2rem;
+        font-weight: bolder;
+        color: white;
+        background: $bg3Clr;
+        border: none;
+        border-radius: 0.5rem;
+        margin-right: 2%;
+
+        cursor: pointer;
+        transition: 0.15s ease;
+        &:hover{
+            scale: 105%;
+        }
+    }
+}
+
+// ステップ2
+input[type="date"]{
+    width: 15%;
+    text-align: center;
+}
+
+.rent{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    // justify-content: space-between;
+    align-items: center;
+    #rentfee, #managementFee{
+        width: 35%;
+        height: 100%;
+        justify-content: space-between;
+        .column{
+            width: 43%;
+            font-size: 1.1rem;
+        }
+        #rent, #managementFee{
+            width: 50%;
+            height: 80%;
+            font-size: 1rem;
+            border: 0.1rem solid $mainClr;
+            border-radius: 0.5rem;
+            padding: 1.5%;
+        }
+    }
+    #rentPay, #managementFeePay{
+        width: 10%;
+        height: 80%;
+        font-size: 1rem;
+        text-align: center;
+        border:  0.1rem solid $mainClr;
+        border-radius: 0.5rem;
+        margin: 0% 1%;
+    }
+
+    #rentPayDay, #managementFeePayDay{
+        width: 20%;
+        height: 80%;
+        font-size: 1rem;
+        text-align: center;
+        border:  0.1rem solid $mainClr;
+        border-radius: 0.5rem;
+        margin: 0% 1%;
+    }
+    #sameTimePay{
+        width: 30%;
+        height: 100%;
+        input[type="checkbox"]{
+            width: 10%;
+            height: 40%;
+        }
+        p{
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+    }
+}
+
+.payment{
+    width: 100%;
+    height: 10%;
+    display: flex;
+    align-items: center;
+    #paymentMethod, #transferFeePayer{
+        width: 10%;
+        height: 80%;
+        font-size: 1rem;
+        text-align: center;
+        border: 0.1rem solid $mainClr;
+        border-radius: 0.5rem;
+    }
+    #transferFeePayer{
+        width: 15%;
+        margin-left: 1%;
+    }
+}
+
+#paymentDetails{
+    width: 100%;
+    height: 70%;
+    border: 0.15rem solid $txtClr;
+    border-radius: 2.5rem;
+    margin-top: 2%;
+    margin-bottom: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+
+    .detailsTitle{
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-left: 9.5%;
+        margin-bottom: 1%;
+    }
+
+    #borrowerBankType{
+        width: 10%;
+        height: 12%;
+        font-size: 1rem;
+        text-align: center;
+        border: 0.1rem solid $mainClr;
+        border-radius: 0.5rem;
+        position: absolute;
+        top: 12.5%;
+        left: 27.5%;
+    }
+
+    label{
+        height: 20%;
+        .column{
+            width: 25%;
+            font-size: 1.1rem;
+        }
+		.value{
+			width: 55%;
+			font-size: 1.1rem;
+		}
+        input{
+            width: 40%;
+            height: 65%;
+        }
+    }
+}
+
+#documentAddress{
+    width: 65%;
+    padding: 1%;
+}
+
+// ステップ3
+#payment{
+	width: 100%;
+	height: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	
+}
+
+#remarks{
+    width: 100%;
+    height: 40%;
+    align-items: start;
+    margin-bottom: 3%;
+    textarea{
+        width: 60%;
+        height: 100%;
+        font-size: 1rem;
+        line-height: 2rem;
+        border: 0.1rem solid $mainClr;
+        border-radius: 0.2rem;
+        padding: 0.5% 1%;
+        resize: none;
+        overflow: auto;
+    }
+}
+
+.saveContract{
+    width: 15%;
+    height: 100%;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: white;
+    background: $bg2Clr;
+    border: none;
+    border-radius: 0.5rem;
+    margin-right: 2%;
+
+    cursor: pointer;
+    transition: 0.15s ease;
+    &:hover{
+        scale: 105%;
+    }
+}

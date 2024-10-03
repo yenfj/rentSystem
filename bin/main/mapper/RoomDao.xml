@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper  namespace="com.example.rentSystem.repository.RoomDAO">
+
+	<!-- 作成日：顔　日付　2024/9/29 -->
+	<!-- 新規部屋を追加する -->
+	<insert id="insertRoom" parameterType="com.example.rentSystem.entity.Room" useGeneratedKeys="true" keyProperty="roomId">
+		INSERT INTO 
+			rent_system.room (
+				builing_id,
+				room_number,
+				owner,
+				floor_plan,
+				floor_space,
+				balcony_area,
+				rent,
+				management_fee,
+				deposit,
+				gift_money,
+				state
+			) 
+		VALUES 
+			(
+				#{buildingId},
+				#{roomNumber},
+				#{owner},
+				#{floorPlan},
+				#{floorSpace},
+				#{balconyArea},
+				#{rent},
+				#{managementFee},
+				#{deposit},
+				#{giftMoney},
+				#{state}
+			)
+	</insert>
+	
+	<!-- 作成日：顔　日付　2024/9/30 -->
+	<!-- 部屋情報を更新する -->
+	<update id="updateRoomState" parameterType="map">
+	    UPDATE 
+	        rent_system.room 
+	    SET 
+	        state = #{state} 
+	    WHERE 
+	        room_id = #{roomId}
+	</update>
+
+	
+</mapper>

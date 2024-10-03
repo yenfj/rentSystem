@@ -1,0 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap');
+
+//sass --watch src/main/resources/static/sass/ContractStyle.scss:src/main/resources/static/css/ContractStyle.css
+
+$mainClr: #8E8E8E;
+$txtClr: #1E1E1E;
+$bgClr: #D9D9D9;
+$bg2Clr: #D1B9A1;
+$bg3Clr: #DBA188;
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Zen Kaku Gothic New", sans-serif;
+	font-weight: 500;
+}
+
+p, input, select, button{
+    color: $txtClr;
+}
+
+button{
+    font-weight: bold;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    padding: 5% 5% 0% 5%;
+    overflow: auto;
+}
+
+.search{
+    width: 100%;
+    height: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    .flex{
+        width: 100%;
+        height: 45%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        input{
+            width: 30%;
+            height: 100%;
+            font-size: 1.1rem;
+            text-align: center;
+            color: $txtClr;
+            background: $bgClr;
+            border: none;
+            border-radius: 1.5rem;
+            padding: 0.5%;
+        }
+
+        .date{
+            width: 35%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            input[type="date"]{
+                width: 45%;
+                height: 100%;
+                text-align: center;
+                padding: 0.5% 3%;
+            }
+            p{
+                font-size: 1.5rem;
+                padding-bottom: 1%;
+            }
+        }
+    }
+    
+    .down{
+        input{
+            width: 25%;
+        }
+
+        select{
+            width: 10%;
+            height: 100%;
+            font-size: 1.1rem;
+            text-align: center;
+            color: $txtClr;
+            border: none;
+            border-radius: 1.5rem;
+            background: $bgClr;
+        }
+        
+        .searchBtn{
+            width: 30%;
+            height: 100%;
+            display: flex;
+            justify-content: end;
+            align-items: center;
+            button{
+                height: 95%;
+                font-size: 1.1rem;
+                font-weight: bold;
+                color: $txtClr;
+                background: $bgClr;
+                border: none;
+                border-radius: 0.2rem;
+                margin-left: 5%;
+
+                cursor: pointer;
+                transition: 0.15s ease;
+                &:hover{
+                    scale: 105%;
+                }
+                &:active{
+                    scale: 98%;
+                }
+            }
+
+            #searchReset{
+                width: 22%;
+                font-size: 0.9rem;
+            }
+
+            #search{
+                width: 17%;
+            }
+        }
+    }
+}
+
+.tool{
+    width: 100%;
+    height: 6%;
+    margin-top: 1%;
+
+    .addContract{
+        width: 7%;
+        height: 100%;
+    }
+
+    button{
+        width: 5%;
+        height: 100%;
+        font-size: 1.1rem;
+        font-weight: bold;
+        color: $txtClr;
+        background: $bgClr;
+        border: none;
+        border-radius: 0.2rem;
+        margin-right: 1%;
+
+        cursor: pointer;
+        transition: 0.15s ease;
+        &:hover{
+            scale: 105%;
+        }
+        &:active{
+            scale: 98%;
+        }
+    }
+}
+
+.result{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5%;
+    input{
+        scale: 165%;
+        margin-top: 10%;
+    }
+    .detailsBtn{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        button{
+            width: 47%;
+            height: 100%;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            border: none;
+            border-radius: 0.2rem;
+
+            cursor: pointer;
+            transition: 0.15s ease;
+            &:hover{
+                scale: 105%;
+            }
+            &:active{
+                scale: 98%;
+            }
+        }
+        #showCon, #renewCon{
+            background: #664D3F;
+        }
+        #editCon, #stopCon{
+            background: $bg3Clr;
+        }
+        #renewCon{
+            width: 37%;
+        }
+        #stopCon{
+            width: 57%;
+        }
+    }
+    th, td{
+        height: 7dvh;
+        text-align: center;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding: 0.5%;
+        overflow: hidden;
+    }
+    tbody tr{
+        background: $bgClr;
+        border-top: 0.5rem solid transparent;
+    }
+    th{
+        font-size: 1rem;
+        color: $txtClr;
+        background: $bg2Clr;
+        &:nth-child(1){ width: 5%; }
+        &:nth-child(2){ width: 9%; }
+        &:nth-child(3){ width: 10%; }
+        &:nth-child(4){ width: 10%; }
+        &:nth-child(5){ width: 9%; }
+        &:nth-child(6){ width: 9%; }
+        &:nth-child(7){ width: 9%; }
+        &:nth-child(8){ width: 9%; }
+        &:nth-child(9){ width: 8%; }
+        &:nth-child(10){ width: 10%; }
+        &:nth-child(11){ width: 12%; }
+    }
+    td{
+        &:nth-child(1){ width: 5%; }
+        &:nth-child(2){ width: 9%; }
+        &:nth-child(3){ width: 10%; }
+        &:nth-child(4){ width: 10%; }
+        &:nth-child(5){ width: 9%; }
+        &:nth-child(6){ width: 9%; }
+        &:nth-child(7){ width: 9%; }
+        &:nth-child(8){ width: 9%; }
+        &:nth-child(9){ width: 8%; }
+        &:nth-child(10){ width: 10%; }
+        &:nth-child(11){ width: 12%; }
+    }
+}
